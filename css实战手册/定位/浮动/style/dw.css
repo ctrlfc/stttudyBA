@@ -1,0 +1,46 @@
+.box-set1{
+     background: #e8ea22;
+}
+
+.box-set2{
+    background: #e8ea22;
+    overflow: auto;
+}
+
+.box-set3:before,.box-set3:after{
+    content: "";
+    display: table;
+}
+.box-set3:after{
+    clear: both;
+}
+.box-set3{
+    *zoom: 1;
+}
+
+.box{
+    background: #8ec63f;
+    height: 100px;
+    float: left;
+    margin: 10px;
+    width: 200px;
+}
+
+/*clearfix方法消除浮动(推荐)*/
+.group:before,.group:after{
+    content:"";
+    display: table;
+}
+.group{
+    clear: both;
+}
+.group{
+    *zoom: 1;
+}
+
+/* 进化 */
+.group:before,.group:after{
+    clear: both;
+    content:"";
+    display: table;
+}

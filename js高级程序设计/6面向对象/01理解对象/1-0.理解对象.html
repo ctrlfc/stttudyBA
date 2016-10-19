@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象</title>
+</head>
+
+<body>
+    <script>
+    /**
+     * 构造函数
+     */
+
+    var person = new Object();
+    person.name = "ctrlf";
+    person.age = 18;
+    person.job = "Front-end Engineer";
+    person.sayName = function() {
+        alert(this.name);
+    };
+
+    /**
+     * 除了简单数据类型(数字,字符串,布尔值,null值和undefined值) 都是对象
+     * js中对象是可变集合,名/值 值可以是数据和函数
+     */
+
+    /**
+     对象字面量
+     带有特征值
+     */
+
+    var person = {
+        name: "ctrlf",
+        age: 18,
+        job: "Front-end Engineer",
+        sayName: function() {
+            alert(this.name);
+        }
+    };
+    console.log(person);
+    person.sayName();
+    </script>
+</body>
+
+</html>

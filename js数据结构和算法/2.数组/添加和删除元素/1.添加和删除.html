@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>添加和删除元素</title>
+</head>
+
+<body>
+    <script>
+    /**
+     * [num description]添加js数组元素只需要赋值给最后一个空位上的元素即可
+     * @type {Array}
+     */
+    var num = [0, 1, 2, 3, 4, 5];
+    //num.length从0开始
+    num[num.length] = 6;
+    console.log(num);
+
+    //push方法可以添加数组元素
+    num.push(7);
+    num.push(8, 9);
+
+    /**
+     * 我们希望在数组中插入一个值，不像之前那样插入到最后，而是放到数组的首位。为 了实现这个需求，首先我们要腾出数组里第一个元素的位置，把所有的元素向右移动一位。我们 可以循环数组中的元素，从最后一位+1（长度）开始，将其对应的前一个元素的值赋给它， 依次处理，最后把我们想要的值赋给第一个位置（-1）上
+     */
+
+    for (var i = num.length; i >= 0; i--) {
+        num[i] = num[i - 1];
+    }
+    num[0] = -1;
+
+    //但是更简单的unshift方法
+    num.unshift(-2);
+    num.unshift(-3, -4);
+
+    /**
+     * 删除最后元素pop方法
+     * [pop和push模拟栈]
+     */
+
+    //删除最后的元素
+    num.pop();
+
+    /**
+     * 删除第一个元素
+     * [shift和unshift模拟队列]
+     */
+
+    for (var i = 0; i < num.length; i++) {
+        num[i] = num[i + 1];
+    }
+
+    //只是把数组第一位的值用第二位覆盖了,所以要确实删除第一个元素,要用shift
+    num.shift();
+
+    /**
+     * 任意位置删除splice方法
+     */
+
+    num.splice(5,3);
+    //删除从索引5开始的3个元素
+    //2,3,4被移除
+
+    num.splice(5,0,2,3,4);
+    //插入元素索引值,第二个是删除,我们要添加,所以在第三个参数写数
+    </script>
+</body>
+
+</html>

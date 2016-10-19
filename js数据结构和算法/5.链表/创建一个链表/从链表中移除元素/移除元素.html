@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>移除</title>
+</head>
+
+<body>
+<script>
+    /**
+     * 移除第一:
+     * 移动任意:
+     * remove:移除任意一个;根据元素值移除
+     */
+
+    this.removeAt = function (position) {
+        //检测越界值
+        if (position > -1 && position < length) { //(1)
+            var current = head, //(2)
+                    previous, //(3)
+                    index = 0; //(4)
+            //移除第一项
+            if (position === 0) { //(5)
+                head = current.next;
+            } else {
+                while (index++ < position) { //(6)
+                    previous = current; //(7)
+                    current = current.next; //(8)
+                }
+                //将previous与current的下一项链接起来:跳过current,从而移除它
+                previous.next = current.next; //(9)
+            }
+            length--; //(10)
+            return current.element;
+        } else {
+            return null; //(11)
+        }
+    };
+
+    /**
+     * 一步一步来看这段代码。该方法要得到需要移除的元素的位置，就需要验证这个位置是有效 的（行{1}）。从0（包括0）到列表的长度（size – 1，因为索引是从零开始的）都是有效的位 置。如果不是有效的位置，就返回null（意即没有从列表中移除元素）。
+     */
+</script>
+</body>
+
+</html>

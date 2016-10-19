@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>多个属性</title>
+</head>
+<body>
+<script>
+    /**
+     * 就是变成ies 相当于加了复数,可以定义多个
+     * 第一个对象是要添加和修改其属性的对象，第二个对象的属性与第一   个对象中要添加或修改的属性一一对应。
+     */
+    var book = {};
+    Object.defineProperties(book, {
+        //如上所诉 book 就是要添加的对象,而下面的的就是要修改它的
+        _year: {
+            value: 2004
+        },
+        edition: {
+            value: 1
+        },
+        year: {
+            get: function () {
+                return this._year;
+            },
+            set: function (newValue) {
+                if (newValue > 2004) {
+                    this._year = newValue;
+                    this.edition += newValue - 2004;
+                }
+            }
+        }
+    });
+    //以上定义的_year,edition数据属性,访问器属性year 与上面定义的相同,只是这次是同一时间创建的
+</script>
+</body>
+</html>

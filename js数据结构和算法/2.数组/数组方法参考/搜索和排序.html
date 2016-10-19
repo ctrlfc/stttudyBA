@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>搜索和排序</title>
+</head>
+
+<body>
+    <script>
+    /**
+     * 反序输出reverse()
+     */
+
+    num.reverse();
+
+    /**
+     * sort()默认成字符串比较
+     */
+
+    num.sort();
+    num.sort(function(a, b) {
+        return a - b;
+    });
+    //对于b大于a时，会返回负数，反之则返回正数。如果相等的话，就会返回0。也 就是说返回的是负数，就说明a比b小，这样sort就根据返回值的情况给数组做排序。
+
+    function compare(a, b) {
+        if (a < b) {
+            return -1;
+        }
+        if (a > b) {
+            return 1;
+        }
+        //a必须等于
+        return 0;
+    }
+    num.sort(compare); //这样就能进行升序排序了
+
+    //函数只要是要调用它进行执行的，都必须加括号。此时，函数实际上等于函数的返回值或者执行效果，当然，有些没有返回值，但已经执行了函数体内的行为，就是说，加括号的，就代表将会执行函数体代码。
+
+    //不加括号的，都是把函数名称作为函数的指针，一个函数的名称就是这个函数的指针，此时不是得到函数的结果，因为不会运行函数体代码。它只是传递了函数体所在的地址位置，在需要的时候好找到函数体去执行。
+
+    //1.自定义排序
+    //希望根据年龄排序
+    var friends = [{
+        name: 'John',
+        age: 30
+    }, {
+        name: 'Ana',
+        age: 20
+    }, {
+        name: 'Chris',
+        age: 25
+    }];
+
+    function comparePerson(a, b) {
+        if (a.age < b.age) {
+            return -1;
+        }
+        if (a.age > b.age) {
+            return 1;
+        }
+        return 0;
+    }
+
+    console.log(friends.sort(comparePerson));
+    //Ana(20),Chris(25),John(30)
+
+    //2.字符串排序
+    var names = ['Ana', 'ana', 'john', 'John'];
+    console.log(name.sort());
+    //然而你会发现输出的结果"ana"在"John"后面
+    //这是因为js在做字符比较的时候,根据的字符对应的ASCII来比较.AJaj对应65,75,97,106
+
+    //想输出一个忽略大小写的比较函数
+    names.sort(function(a, b) {
+        //toLowerCase方法忽略大小写
+        if (a.toLowerCase() < b.toLowerCase()) {
+            return -1;
+        }
+        if (a.toLowerCase() < b.toLowerCase()) {
+            return 1;
+        }
+        return 0;
+    });
+
+    //如果忽略重音的话
+    var names2 = ['Maève', 'Maeve'];
+    console.log(names2.sort(function(a, b) {
+        return a.localeCompare(b);
+    }));
+
+    //3.搜索
+    //搜索有两个方法:indexOf方法返回与参数匹配第一个元素索引
+    //lastIndexOf返回与参数匹配的最后一个元素索引
+    console.log(num.IndexOf(10));
+    console.log(num.IndexOf(100));
+	// 第一行的输出是9，第二行的输出是-1（因为100不在数组里）
+
+	num.push(10);
+	console.log(num.lastIndexOf(10));
+    console.log(num.lastIndexOf(100));
+    //我们往数组里加入了一个新的元素10，因此第二行会输出15（数组中的元素是1到15，还有 10），第三行会输出-1（因为100不在数组里）。
+    </script>
+</body>
+
+</html>

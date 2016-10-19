@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>私有变量</title>
+</head>
+
+<body>
+    <script>
+    /**
+     * js什么都没有,当然也没有私有变量;所有都是公的(公有的).
+     * 但是有概念,没有实物,靠yy也是可以的
+     * 任何在函数定义的变量,都可以认为是私有变量,因为不能在外部访问这些变量
+     * 私有变量包括函数的参数,局部变量和在函数内部定义的其他函数
+     */
+
+    function add(num1, num2) {
+        var sum = num1 + num2; //siyou
+        return sum; //siyou
+    }
+
+    /**
+     * 在这个函数内部，有 3 个私有变量：num1、num2 和 sum。在函数内部可以访问这几个变量，但在 函数外部则不能访问它们。如果在这个函数内部创建一个闭包，那么闭包通过自己的作用域链也可以访 问这些变量。而利用这一点，就可以创建用于访问私有变量的公有方法。
+     */
+
+    /**
+     * 我们把有权访问私有变量和私有函数的公有方法称为特权方法（privileged method）。有两种在对象 上创建特权方法的方式。第一种是在构造函数中定义特权方法，基本模式如下。
+     */
+
+    //构造函数法创建私有变量,只能创建私有变量
+    function MyObject() {
+        //私有变量和私有函数
+        var privateVariable = 10;
+
+        function privateVariable() {
+            return false;
+        }
+
+        //特权方法
+        this.publicMethod = function() {
+            privateVariable++;
+            return privateVariable();
+        };
+    }
+
+    /**
+     * 这个模式在构造函数内部定义了所有私有变量和函数。然后，又继续创建了能够访问这些私有成员 的特权方法。能够在构造函数中定义特权方法，是因为特权方法作为闭包有权访问在构造函数中定义的 所有变量和函数。对这个例子而言，变量 privateVariable 和函数 privateFunction()只能通过特 权方法 publicMethod()来访问。在创建 MyObject 的实例后，除了使用 publicMethod()这一个途 径外，没有任何办法可以直接访问 privateVariable 和 privateFunction()。
+     */
+
+    /**
+     * 上面的瓦不信,...我信了
+     */
+
+    /**
+     * 利用私有和特权成员，可以隐藏那些不应该被直接修改的数据
+     */
+
+    function Person(name) {
+        this.getName = function() {
+            return name;
+        };
+
+        this.setName = function(value) {
+            name = value;
+        };
+    }
+
+    var person = new Person('Nicholas');//Nicholas
+    console.log(person.getName());
+    person.setName('lfy');//lfy
+    console.log(person.getName());
+
+    /**
+     * 以上代码的构造函数中定义了两个特权方法：getName()和 setName()。这两个方法都可以在构 造函数外部使用，而且都有权访问私有变量 name。但在 Person 构造函数外部，没有任何办法访问 name。 由于这两个方法是在构造函数内部定义的，它们作为闭包能够通过作用域链访问 name。私有变量 name 在 Person 的每一个实例中都不相同，因为每次调用构造函数都会重新创建这两个方法。不过，在构造函数中定义特权方法也有一个缺点，那就是你必须使用构造函数模式来达到这个目的。第 6 章曾经讨论 过，构造函数模式的缺点是针对每个实例都会创建同样一组新方法，而使用静态私有变量来实现特权方 法就可以避免这个问题。
+     */
+
+    /**
+     * 避免了每次创建新方法
+     */
+    </script>
+</body>
+
+</html>

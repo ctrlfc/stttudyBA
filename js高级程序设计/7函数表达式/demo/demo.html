@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+</head>
+<body>
+<script>
+    function F(x) {
+       this.x = x;
+    }
+//    F.prototype.toString = function () {
+//        return "哈哈";
+//    };
+    var a = new F(3);//你实例化是F
+    console.log(a);
+</script>
+</body>
+</html>

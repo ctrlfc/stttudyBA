@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>操作符</title>
+</head>
+
+<body>
+    <script>
+    /**
+     * -编程语言都需要操作符
+     * -js中的有算术,赋值,比较,逻辑,位,一元和其他操作符
+     *
+     */
+
+    //1.算术运算符
+    var num = 0;
+    num = num + 2;
+    num = num * 3;
+    num = num / 2;
+    num++; //先赋值在递增或递减
+    num--;
+
+    //2.赋值运算符
+    num += 1; //1
+    num -= 2; //-2
+    num *= 3; //0
+    num /= 2; //0
+    num %= 3; //3
+
+    //3.比较运算符
+    console.log('num == 1: ' + (num == 1)); //false(0==1)
+    console.log('num === 1:' + (num === 1)); //false(0===1)
+    console.log('num != 1:' + (num != 1));
+    console.log('num > 1:' + (num > 1));
+    console.log('num < 1:' + (num < 1));
+    console.log('num >= 1:' + (num >= 1));
+    console.log('num <= 1:' + (num <= 1));
+
+    //4.逻辑运算符
+    console.log('true && false :' + (true && false));
+    console.log('true || false :' + (true || false));
+    console.log('!true:' + (!true));
+
+    //5.位运算符
+
+    /*或运算（or）：符号为|，表示若两个二进制位都为0，则结果为0，否则为1。
+
+    与运算（and）：符号为&，表示若两个二进制位都为1，则结果为1，否则为0。
+
+    否运算（not）：符号为~，表示对一个二进制位取反。
+
+    异或运算（xor）：符号为^，表示若两个二进制位不相同，则结果为1，否则为0。
+    */
+    // 7 | 2 111 010 111
+    // 6 | 3 110 011 111
+    console.log('5 & 1:', (5 & 1)); //101 001 001 求1 1
+    console.log('5 | 1:', (6 | 3)); //101 001 101 求0 5
+    console.log('~ 5:', (~5)); //-6 一个数和自己相反数相加=-1
+    console.log('5 ^ 1: ', (5 ^ 1)); // 101 001 100 同1异0 4
+    console.log('5 << 1', (5 << 1)); //左移1位 后面添加0 1010 10(乘以2的指定次方)
+    console.log('5 >> 1', (5 >> 1)); //右移1位 减去一个0 10 2(除以2的指定次方,取整)
+
+    //typeof操作符可以返回变量或者表达式.
+    console.log('typeof num:', typeof num);
+    console.log('typeof Packt:', typeof 'Packt');
+    console.log('typeof true:', typeof true);
+    console.log('typeof [1,2,3]:',
+        typeof [1, 2, 3]); //object
+    console.log('typeof {name:Jphn}:',
+        typeof {
+            name: 'John'
+        });
+
+    //delete操作符
+    var myObj = {name: 'John',age:21};
+    delete myObj.age;
+    console.log(myObj);//输出对象{name:'John'}
+
+    </script>
+</body>
+
+</html>

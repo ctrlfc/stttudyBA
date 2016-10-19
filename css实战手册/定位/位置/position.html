@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>位置</title>
+    <link rel="stylesheet"  href="style/position.css">
+</head>
+<body>
+<!--定位属性
+更多元素位置position
+5个不同属性值
+-->
+<!--Positon static
+static会被重写覆盖
+-->
+<!--Postion relative 相对
+top,right,bottom,left只能在relative.absolute.fixed
+设置相对定位元素
+正常 静态 自然
+相对于原来的位置
+(绝对元素相对于相对父元素)
+top的优先级高于bottom
+enleft高 阿拉伯right高
+-->
+<!--Postion absolute 绝对
+脱离文档流
+和相对父元素有关
+无相对祖先则定位于主体body
+只指定top和bottom，元素的高度就由着两者决定了，元素宽度自适应内容宽度。left和也有类似的性质。
+-->
+<!--Postion fixed 固定
+相对于浏览器窗口
+-->
+<!--固定页头页脚
+ 固定头脚侧面
+ 不需要margin border padding
+-->
+<!--z-index属性
+z值越高越前
+-->
+<div class="box-set1">
+    <div class="box1">box1</div>
+    <div class="box1">box2</div>
+    <div class="box1">box3</div>
+</div>
+<!--relative-->
+<div class="box-set2">
+    <div class="box2 a">box1</div>
+    <div class="box2 b">box2</div>
+    <div class="box2 c">box3</div>
+</div>
+<!--absolute-->
+<div class="box-set3">
+    <div class="box3 e">box1</div>
+    <div class="box3 f">box2</div>
+    <div class="box3 g">box3</div>
+    <div class="box3 h">box3</div>
+</div>
+<!--fixed-->
+<div class="box-set4">
+    <div class="box4 e">box1</div>
+    <div class="box4 f">box2</div>
+    <div class="box4 g">box3</div>
+    <div class="box4 h">box3</div>
+</div>
+
+<footer>Fixed Footer</footer>
+<!--z-index-->
+<div class="box-set5">
+    <div class="box5 i">box1</div>
+    <div class="box5 j">box2</div>
+    <div class="box5 k">box3</div>
+    <div class="box5 l">box3</div>
+</div>
+</body>
+</html>

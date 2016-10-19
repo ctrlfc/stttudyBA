@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>1022</title>
+</head>
+
+<body>
+    <script>
+    /**
+     * 2进制转换
+     */
+
+    //stack类,里面有方法
+    function Stack() {
+
+        var items = [];
+
+        this.push = function(element) {
+
+            items.push(element);
+        };
+
+        this.pop = function() {
+
+            return items.pop();
+        };
+
+        this.peek = function() {
+
+            return items[items.length - 1];
+        };
+
+        this.isEmpty = function() {
+
+            return items.length === 0;
+        };
+
+        this.size = function() {
+
+            return items.length;
+        };
+
+        this.clear = function() {
+
+            items = [];
+        };
+
+        this.print = function() {
+
+            console.log(items.toString());
+        };
+    }
+
+
+    function divideBy2(decNumber) {
+        var remStack = new Stack(),
+            rem,
+            binaryString = '';
+
+        while (decNumber > 0) { //(1)
+            rem = Math.floor(decNumber % 2); //(2)
+            remStack.push(rem); //(3)
+            decNumber = Math.floor(decNumber / 2); //(4)
+        }
+        //循环符合的数
+        while (!remStack.isEmpty()) { //(5)
+            binaryString += remStack.pop().toString();
+        }
+        return binaryString;
+        //返回字符串
+    }
+    //满足条件进行整除模运算,结果和余数放到栈里(2,3),然后用结果和2做整除(4)
+    //最后移除栈连接成字符串(5)
+
+    console.log(divideBy2(233));
+    console.log(divideBy2(10));
+    console.log(divideBy2(1000));
+
+    //--------------------------------------------
+    //扩展到任何进制
+    function baseConverter(decNumber, base) {
+        var remStack = new Stack(),
+            rem,
+            baseString = '',
+            digits = '0123456789ABCDEF'; //(6)
+
+        while (decNumber > 0) {
+            rem = Math.floor(decNumber % base);
+            remStack.push(rem);
+            decNumber = Math.floor(decNumber / base);
+        }
+
+        while (!remStack.isEmpty()) {
+            baseString += digits[remStack.pop()];
+            // console.log(digits[remStack.pop()]);
+            //(7)get了转换
+        }
+        return baseString;
+    }
+    //0-7和0-9
+    //对栈中的数字做转换
+    console.log(baseConverter(100345, 2)
+);
+    console.log(baseConverter(100345, 8));
+    console.log(baseConverter(100345, 16));
+    </script>
+</body>
+
+</html>

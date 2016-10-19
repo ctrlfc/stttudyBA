@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>迭代器函数</title>
+</head>
+
+<body>
+    <script>
+    /**
+     * [isEven description] 返回true false的方法
+     * @param  {[type]}  x [description]
+     * @return {Boolean}   [description]
+     */
+
+    var isEven = function(x) {
+        //如果是2的倍数就返回true
+        console.log(x);
+        return (x % 2 == 0);
+        //也可以携程return (x % 2 == 0) ? true : false;
+    };
+    var num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+    //下面我用every方法迭代数组中的每个元素,直到返回false
+    num.every(isEven);
+    //第一个1就不是2的倍数,所以返回false
+
+    //下面来看看some方法,会迭代每个元素,返回的是true
+    num.some(isEven);
+    //第一个1会返回false,第二个2就返回true--迭代结束
+
+    //如果要迭代整个数组,可以用forEach方法.和for循环相同结果:
+    num.forEach(function(x) {
+        console.log(x % 2 == 0);
+    });
+
+    /**
+     * 可以返回新数组的方法
+     */
+
+    var myMap = num.map(isEven);
+    //数组里的是[false, true, false, true, false, true, false, true, false, true, false, true, false, true, false],可以清楚知道是否为偶数
+
+    var evenNum = num.filter(isEven);
+    //返回的数组里都是true[2,4,6,8,10];
+
+    number.reduce(function(previous,current,index){
+    	return previous + current;
+    });
+    //这个函数有4个参数:previousvalue,currentvalue,index,array.将会返回一个被叠加到累加器的值,reduce方法会返回这个累加器.
+    //如果是求和就很有用了
+    </script>
+</body>
+
+</html>

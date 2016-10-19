@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>变量闭包</title>
+</head>
+
+<body>
+<script>
+    /**
+     * 闭包只能取得包含函数中任何变量的最后一个值
+     */
+    function createFunction() {
+        var result = new Array();
+
+        for (var i = 0; i < 10; i++) {
+            result[i] = function () {
+                return i;
+            };
+        }
+        return result;
+    }
+    createFunction()
+    /**
+     * 这个函数会返回一个函数数组。表面上看，似乎每个函数都应该返自己的索引值，即位置 0 的函数 返回 0，位置 1 的函数返回 1，以此类推。但实际上，每个函数都返回 10。因为每个函数的作用域链中 都 保 存 着 createFunctions() 函 数 的 活 动 对 象 ， 所 以 它 们 引 用 的 都 是 同 一 个 变 量 i 。 当 createFunctions()函数返回后，变量 i 的值是 10，此时每个函数都引用着保存变量 i 的同一个变量 对象，所以在每个函数内部 i 的值都是 10。
+     */
+
+    /**
+     * 内部每个函数都保存着一个外部函数的活动对象
+     */
+
+    /**
+     * 但可以强行改变
+     */
+
+    function createFunction2() {
+        var result = new Array();
+
+        for (var i = 0; i < 10; i++) {
+            result[i] = function (num) {
+                return function () {
+                    return num;
+                };
+            }(i);//外面套了一个匿名函数,并立即执行
+        }
+        return result;
+    }
+    createFunction2()
+    /**
+     * 在重写了前面的 createFunctions()函数后，每个函数就会返回各自不同的索引值了。在这个版 本中，我们没有直接把闭包赋值给数组，而是定义了一个匿名函数，并将立即执行该匿名函数的结果赋 给数组。这里的匿名函数有一个参数 num，也就是最终的函数要返回的值。在调用每个匿名函数时，我 们传入了变量 i。由于函数参数是按值传递的，所以就会将变量 i 的当前值复制给参数 num。而在这个 匿名函数内部，又创建并返回了一个访问 num 的闭包。这样一来，result 数组中的每个函数都有自己 num 变量的一个副本，因此就可以返回各自不同的数值了。
+     */
+
+    /**
+     * result 数组中的每个函数都有自己 num 变量的一个副本
+     * 简而言之,闭包保护内部函数不受外部影响
+     */
+</script>
+</body>
+
+</html>

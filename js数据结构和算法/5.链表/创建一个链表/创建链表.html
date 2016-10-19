@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>链表</title>
+</head>
+
+<body>
+    <script>
+    function LinkedList() {
+        var Node = function(element) { //(1)表示要加链表的项,包含值和指针
+            this.element = element;
+            this.next = null;
+        };
+        var length = 0; //(2)表示列表数量的length属性(内部/私有变量)
+        var head = null; //(3)存储第一个节点的引用
+
+        this.append = function(element) {};
+        this.insert = function(position, element) {};
+        this.removeAt = function(position) {};
+        this.remove = function(element) {};
+        this.indexOf = function(element) {};
+        this.isEmpty = function(element) {};
+        this.size = function() {};
+        this.gethead = function() {};
+        this.toString = function() {};
+        this.print = function() {};
+    }
+    /**
+     * append(element):尾部添加新项
+     * insert(position,element):指定位置插入新的项
+     * remove(element):移除一项
+     * removeAt(position):指定位置移除一项
+     * indexOf(element):返回元素在列表中的索引(x:-1)
+     * isEmpty():
+     * size():返回个数
+     * toString():由于列表项使用了Node类,就需要重写基础自Js对象默认的toString方法,让其只输出元素的值
+     *
+     */
+    </script>
+</body>
+
+</html>

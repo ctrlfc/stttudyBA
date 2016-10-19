@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>添加</title>
+</head>
+
+<body>
+    <script>
+    /**
+     * 列表为空,添加第一个元素
+     * 列表不为空,让其追加元素
+     */
+
+    this.append = function(element) {
+        var node = new Node(element), //(1)e作为值传入,创建Node项
+            current; //(2)有值不知道 不为空,指向列表中的变量
+
+        if (head === null) { //列表中第一个节点//(3)
+            head = node;
+            //列表最有隔一个节点下一个元素始终是null
+        } else {
+            current = head; //(4)
+
+            //循环列表,直到找到最后一项
+            while (current.next) {
+                current = current.next;//没有下一个了就找到了
+            }
+
+            //找到最后一项,将其next赋为node,建立链接
+            current.next = node; //(5)当被建立时始终为null
+        }
+        length++; //更新列表的长度//(6)
+    };
+
+    // var list = new Link
+    </script>
+</body>
+
+</html>

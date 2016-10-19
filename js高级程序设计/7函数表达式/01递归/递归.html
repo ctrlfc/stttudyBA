@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>递归</title>
+</head>
+
+<body>
+    <script>
+    /**
+     * 递归函数通过自身调用自身
+     */
+
+    function factorial(num) {
+        if (num <= 1) {
+            return 1;
+        } else {
+            return num * factorial(num - 1);
+        }
+    }
+
+    var anotherFactorial = factorial;
+    factorial = null;
+    alert(anotherFactorial(4)); //错
+    //以上代码先把 factorial()函数保存在变量 anotherFactorial 中，然后将 factorial 变量设 置为 null，结果指向原始函数的引用只剩下一个。但在接下来调用 anotherFactorial()时，由于必 须执行 factorial()，而 factorial 已经不再是函数，所以就会导致错误。在这种情况下，使用 arguments.callee 可以解决这个问题。
+
+    //arguments.callee 是一个指向执行函数的指针,因此可以用来实现对函数的递归调用
+    function factorial() {
+        if (num <= 1) {
+            return 1;
+        } else {
+            return num * arguments.callee(num - 1);
+        }
+    }
+
+    //严格模式下可以这样
+    var factorial = (function f(num) {
+        if (num <= 1) {
+            return 1;
+        } else {
+            return num * f(num - 1);
+        }
+    });
+    // 以上代码创建了一个名为 f()的命名函数表达式，然后将它赋值给变量 factorial。即便把函数 赋值给了另一个变量，函数的名字 f 仍然有效，所以递归调用照样能正确完成。
+
+    //函数表达式和函数声明
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>循环</title>
+</head>
+
+<body>
+    <script>
+    /**
+     * 处理数组和算法中经常用到循环,特别是for循环
+     * 循环通常是一个数字,然后和另外一个值比较(条件成立就好执行循环中的代码),之后这个数值会递增或者递减
+     */
+
+    for (var i = 0; i < 10; i++) {
+        console.log(i);
+    }
+
+    /**
+     * 而while循环,有个初始值为0的变量,当我们希望i小于10时候输出它的值
+     */
+
+    var i = 0;
+    while (i < 10) {
+        console.log(i);
+        i++;
+    }
+
+    /**
+     * do...while循环和while循环很相似,但do...while是先执行代码再判断循环条件,所以至少会循环一次
+     */
+
+    var i = 0;
+    do {
+        console.log(i);
+        i++;
+    } while (i < 10);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>创建和初始化</title>
+</head>
+
+<body>
+    <script>
+    /**
+     * new 关键字可以创建数组,长度,参数都有自定义
+     */
+
+    var array = new Array(3);
+    var array = new Array('a', 'b');
+
+    /**
+     * 当然用[]是最好的方式
+     */
+
+    var array = [];
+    var array = ['a', 'b', 'c'];
+
+    //想知道数组有多少元素,用length属性
+    console.log(array.length);
+
+    //要访问数组里特定位置的元素,可以用中括号传递数值位置,得到想知道的值或者赋新的值
+    //输出数组里的元素,可以通过循环遍历数组,打印元素
+    for (var i = 0; i < array.length; i++) {
+        console.log(array[i]);
+    }
+
+    /**
+     * 斐波拉契第一个数字是1,第二个是2;第三个等于前两项之和
+     */
+
+    var fibonacci = [];
+    fibonacci[1] = 1;
+    fibonacci[2] = 2;
+
+    //把数组前两位元素相加,结果赋给当前位置上的元素
+    for (var i = 3; i < 20; i++) {
+        fibonacci[i] = fibonacci[i - 1] + fibonacci[i - 2];
+    }
+    //把上面的数组遍历出来
+    for (var y = 1; y < fibonacci.length; y++) {
+        console.log(fibonacci[y]);
+    }
+    </script>
+</body>
+
+</html>

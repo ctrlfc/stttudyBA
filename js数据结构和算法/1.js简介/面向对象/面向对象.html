@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象</title>
+</head>
+
+<body>
+    <script>
+    /**
+     * 对象里面就普通的名值对
+     * 两种方式建立
+     */
+
+    //1
+    var obj = new object();
+
+    //2
+    var obj = {};
+
+    obj = {
+    	name:{
+    		first: 'Gandalft',
+    		last: 'the Grey'
+    	},
+    	address: 'Middle Earth'
+    };
+
+    /**
+     * 在oop中,对象是类的实例.
+     * 一个类定义了对象的特征.
+     */
+
+    function Book(title,pages,isbn){
+    	this.title = title;
+    	this.pages = pages;
+    	this.isbn = isbn;
+    	//可以直接在类的定义里声明函数
+    	this.printIsbn = function(){
+    		console.log(this.isbn);
+    	}
+    }
+    book.printIsbn();
+
+    /**
+     * 以上在内部结构中声明,每个类实例都有一份该方法的副本.
+     * 而使用原型方法可以节约内存和 降低实例化的开销,所以最好在声明公共方法时使用基于原型的方法.
+     */
+    </script>
+</body>
+
+</html>

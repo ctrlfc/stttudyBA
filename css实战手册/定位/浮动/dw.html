@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>定位</title>
+    <link rel="stylesheet"  href="style/dw.css">
+</head>
+<body>
+    <!--浮动的局限性
+    子元素的浮动确定了它们的宽度
+    浮动的元素不影响父元素的宽度
+    嵌套的元素不会正确的排列，也会有错误的样式出现。
+    .box-set无样式
+    .box-set高度为0
+    clear:both:不符合语义 空内容堆积
+    -->
+    <!--Overflow技巧
+    overflow:auto;
+    父元素有一个高度
+    限制在父元素内
+    各浏览器显示不同
+    -->
+    <!--clearfix
+    :before防止子元素顶部的外边距塌陷
+    display:table创建table-cell保证ie兼容
+    :after防止底部外边距塌陷以及清除浮动
+    ie67加上zoom触发父元素hasLayout
+    -->
+    <!--有效的包含浮动
+    定义一个类名group
+    再调用
+    -->
+    <div class="box-set1" >
+        <div class="box">box1</div>
+        <div class="box">box2</div>
+        <div class="box">box3</div>
+    </div>
+
+    <div class="box-set2">
+        <div class="box">box1</div>
+        <div class="box">box2</div>
+        <div class="box">box3</div>
+    </div>
+
+    <div class="box-set3">
+        <div class="box">box1</div>
+        <div class="box">box2</div>
+        <div class="box">box3</div>
+    </div>
+</body>
+</html>

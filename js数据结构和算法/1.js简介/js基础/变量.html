@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>变量</title>
+</head>
+
+<body>
+    <script>
+
+    /*
+    - 变量用来保存数据,在需要时可以设置 提取 更新 .
+    - 值有类型数字,字符串,布尔,数组,函数和对象,还有undefined和null以及日期和正则
+    */
+
+    var num = 1; //(1)数字类型
+    num = 3; //(2)更新变量
+
+    var price = 1.5; //(3) 十进制浮点
+    var name = 'Packt'; //(4) 字符串
+    var trueValue = true; //(5) 布尔值
+    var nullVar = null; //(6) null 没有值
+    var und; //(7)  没赋值
+
+    console.log('num:' + num);
+    console.log('name:' + name);
+    console.log('trueValue' + trueValue);
+    console.log('nullVar' + nullVar);
+    console.log('und:' + und);
+
+    /*
+    - 变量作用域,就是在编写的算法函数中,能访问的变量.
+    - 函数作用域也可以是一个函数.
+    - 有本地和全局变量两种.
+    */
+
+    var myVaribale = 'global';
+    myotherVaribale = 'global';
+
+    function myFunciton() {
+        var myVaribale = 'local';
+        return myVaribale;
+    }
+
+    function myotherFunciton() {
+        myotherVaribale = 'local';
+        return myotherVaribale;
+    }
+
+    console.log(myVaribale);//(1) global
+    console.log(myFunciton());//(2) local,函数中声明的本地变量
+    console.log(myotherVaribale);//(3) global 引用了第二行初始化后的全局变量
+    console.log(myotherFunciton());//(4) local 在myotherFunction函数中,没有使用var关键字修饰,所以引用的是全局变量并将它赋值为local
+    console.log(myotherVaribale);//(5) local 由上面可知
+
+
+    </script>
+</body>
+
+</html>

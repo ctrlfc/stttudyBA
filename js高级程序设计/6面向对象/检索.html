@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>检索</title>
+    <script
+>
+        /**
+         * 检索对象里的值,用[]包住一个字符串表达式
+         * 另外如果是字符串字面量,且它是个合法JavaScript标识符不是保留字,可以用.表示(可读性和紧凑)
+         */
+        var stooge = {
+            "first name": "Jerome",
+            "last-name": "Howard"
+        };
+        var flight = {
+            airline: "Oceanic",
+            number: 815,
+            departure: {
+                IATA: "SYD",
+                time: "2004-09-22 14:55",
+                city: "Sydney"
+            },
+            arrival: {
+                IATA: "LAX",
+                time: "2004-09-22 10:42",
+                city: "Los Angeles"
+            }
+        };
+        stooge["first name"];
+        flight.departure.IATA;
+        stooge["middle-name"]; //undefined
+        flight.status;   //undefined
+        stooge["FIRST-NAME"];  //undefined
+
+        /**
+         * ||运算符可以填充默认值(取不到值的时候)
+         * &&避免取值undefined成员属性TypeError异常
+         */
+        var middle = stooge["middle-name"]||"(none)";
+        var status = flight.status || "unknown";
+        flight.equipment; //undefined
+        flight.equipment.model; //throw "TypeError"
+        flight.equipment && flight.equipment.model; //undefined
+    </script>
+</head>
+<body>
+</body>
+</html>

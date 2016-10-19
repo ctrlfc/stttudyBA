@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>相等操作符==和===</title>
+</head>
+
+<body>
+    <script>
+//==
+    /**
+     * 使用==时,不同类型的值也可以被看作相等
+     *
+     * 	null == undefined : true
+     *  数字 == 字符串 : x == toNumber(y)
+	 *	布尔值 == 任何类型 : toNumber(x) == y
+	 *	字符串或者数字 == 对象 : x == toPrimitive(y);
+	 *
+     * 如果是想同类型,js会比较它们的值或者对象值.
+     * 不在以上情况的都会返回false
+     */
+
+    /**
+     * toNumber内部方法,对不同类型返回:
+     *
+     * 	undefined : NaN
+     *  null : 0
+     *  布尔值 : 如果是true,返回1;如果是false,返回0
+     *  数字 : 数字对应的值
+     *  字符串 : 将字符串解析成数字.如果字符串中包含字母,返回false;如果是有数字字符串组成,转换成数字
+     *  对象 : Number(toPrimitive(value))
+     *
+     */
+
+    /**
+     * toPrimitive方法对不同类型返回的结果如下:
+     *
+     * 	对象 : 如果对象的valueof方法的结果是原始值,返回原始值;如果对象的toString方法返回原始值,就返回这个值;其他都是错误
+     *
+     */
+
+    	console.log('packt' ? true : false);
+    	console.log('packt' == true); //false
+
+    /**
+     * (1) 布尔值会被toNumber方法转换成1
+     * (2) 字符串会被toNumber方法转换成NaN(因为有字母)
+     */
+
+//===
+	/**
+	 * 只比较2个类型,如果值也一样:
+	 *
+	 * 	数字想同,字符串相同,布尔值一样,对象引用同一个都是true
+	 */
+
+		var person1 = {name:'John'};
+		var person2 = {name:'John'};
+		console.log(person1 === person2); //false,不同对象
+
+    </script>
+</body>
+
+</html>

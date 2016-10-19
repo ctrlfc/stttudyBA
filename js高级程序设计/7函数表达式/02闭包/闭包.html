@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>闭包</title>
+</head>
+
+<body>
+    <script>
+    /**
+         闭包:是指有权访问另一个函数作用域中的变量的函数
+         创建闭包的的常见方式:就是在一个函数内部创建另一个函数
+         */
+    //属性名
+    function ccf(propertyName) {
+
+        return function(obj1, obj2) {
+
+
+            var val1 = obj1[propertyName];
+            var val2 = obj2[propertyName];
+
+
+            if (val1 < val2) {
+                return -1;
+            } else if (val1 > val2) {
+                return 1;
+            } else {
+                return 0;
+            }
+        };
+    }
+    /*即使这个内部函数被返回了，而且是在其他地方被调用了，但它仍然以访问变量 propertyName 。
+     之所以还能够访问这个变量， 是因为内部函数的作用域链中包含 createComparisonFunction()的作用域。*/
+
+    /**
+     1. 当某个函数被调用时，会创建一个执行环境（execution context）及相应的作用域链
+     2. 使用 arguments 和其他命名参数的值来初始化函数的活动对象（activation object）
+     3. 但在作用域链中，外部函数的活动对象始终处于第二位，外部函数的外部函数的活动对象处于第三位，……直至作为作用域链终点的全局执行环境。
+     */
+
+    function cp(val1, val2) {
+        if (val1 < val2) {
+            return -1;
+        } else if (val1 > val2) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+    var result = cp(5, 10);
+    console.log(result);
+    /**
+     先定义了cp()函数,在全局中调用它
+     活动对象:这时会包含一个arguments,value1和value2
+     全局执行环境的变量对象:(result,compare)在compare()执行环境的作用域链中处于第二位\
+     */
+
+    /**
+     * 后台的每个执行环境都有一个表示变量的对象——变量对象。全局环境的变量对象始终存在，而像 compare()函数这样的局部环境的变量对象，则只在函数执行的过程中存在。在创建 compare()函数 时，会创建一个预先包含全局变量对象的作用域链，这个作用域链被保存在内部的[[Scope]]属性中。 当调用 compare()函数时，会为函数创建一个执行环境，然后通过复制函数的[[Scope]]属性中的对 象构建起执行环境的作用域链。此后，又有一个活动对象（在此作为变量对象使用）被创建并被推入执 行环境作用域链的前端。对于这个例子中 compare()函数的执行环境而言，其作用域链中包含两个变 量对象：本地活动对象和全局变量对象。显然，作用域链本质上是一个指向变量对象的指针列表，它只 引用但不实际包含变量对象。
+     * 无论什么时候在函数中访问一个变量时，就会从作用域链中搜索具有相应名字的变量。一般来讲， 当函数执行完毕后，局部活动对象就会被销毁，内存中仅保存全局作用域（全局执行环境的变量对象）。 但是，闭包的情况又有所不同。
+     * 在另一个函数内部定义的函数会将包含函数（即外部函数）的活动对象添加到它的作用域链中。因 此，在 createComparisonFunction()函数内部定义的匿名函数的作用域链中，实际上将会包含外部 函数 createComparisonFunction()的活动对象。图 7-2 展示了当下列代码执行时，包含函数与内部 匿名函数的作用域链
+     * */
+
+    /**
+     * 普通函数
+     * 创立时拷贝一份全局变量保存起来
+     * 执行时建立本地对象,搜索全局变量
+     * 以上也是作用域链的顺序
+     */
+
+    /**
+     * 闭包函数
+     * 创立时拷贝一份外部全局变量和外部活动对象保存起来
+     * 执行时建立本地对象,搜索全局变量,但只会搜索到活动对象,不会直接访问外部函数中的变量
+     * 以上是作用域链的顺序
+     */
+    var compare = ccf('name');
+    var result = compare({
+        name: 'Nicholas'
+    }, {
+        name: "Greg"
+    });
+        console.log(result);
+
+    /**
+     * 在匿名函数从 createComparisonFunction() 中被返回后， 它的作用域链被初始化为包含 createComparisonFunction() 函数的活动对象和全局变量对象。 这样， 匿名函数就可以访问在 createComparisonFunction()中定义的所有变量。更为重要的是，createComparisonFunction() 函数在执行完毕后，其活动对象也不会被销毁，因为匿名函数的作用域链仍然在引用这个活动对象。换 句话说，当 createComparisonFunction()函数返回后，其执行环境的作用域链会被销毁，但它的活 动对象仍然会留在内存中；直到匿名函数被销毁后，createComparisonFunction()的活动对象才会 被销毁
+     */
+
+    /**
+     * 匿名函数
+     * 创立时拷贝一份外部全局变量和外部活动对象保存起来
+     * 执行时建立本地对象,搜索全局变量
+     * 即使外部函数被销毁,因为匿名函数仍然引用这个活动变量,即活动变量还在内存中
+     * 直到匿名函数被销毁后,外部函数的活动对象才销毁
+     */
+
+    //创建函数
+    var comparenames = ccf('name');
+
+    //调用函数
+    var result = comparenames({
+        name: 'Nicholas'
+    }, {
+        name: 'Greg'
+    });
+
+    //解除对匿名函数的引用
+   comparenames = null;
+
+    /**
+     * 首先，创建的比较函数被保存在变量 compareNames 中。而通过将 compareNames 设置为等于 null 解除该函数的引用，就等于通知垃圾回收例程将其清除。随着匿名函数的作用域链被销毁，其他作用域 （除了全局作用域）也都可以安全地销毁了。
+     */
+    </script>
+</body>
+
+</html>

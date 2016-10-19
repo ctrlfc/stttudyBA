@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>优先队列</title>
+</head>
+
+<body>
+    <script>
+    /**
+     * 实现一个优先队列:有两个个选项
+     * 设置优先级,然后在正确位置添加元素
+     * 用入列操作添加元素,然后按优先级移除它们
+     */
+
+    function PriorityQueue() {
+        var items = [];
+
+        function QueueElement(element, priority) { //需要创建一个特殊的元素,包括添加的和优先级
+            this.element = element;
+            this.priority = priority;
+        }
+
+        this.enqueue = function(element, priority) {
+            var queueElement = new QueueElement(element, priority);
+            if (this.isEmpty()) { //如果为空,直接入列
+                items.push(queueElement);
+            } else { //否则比较优先级,如有更低比较级的元素就插在它前面(priority值更大（优先级更低）)
+                var added = false;
+                for (var i = 0; i < items.length; i++) {
+                    if (queueElement.priority < items[i].priority) {
+                        items.splice(i, 0, queueElement); //一旦找到大的就在前面添加
+                        added = true; //改变执行状态
+                        break; //并跳出循环
+                    }
+                }
+                if (!added) { //如果大于任何元素,添加进末尾就行
+                    items.push(queueElement);
+                }
+            }
+        };
+        //其他方法一样
+        this.dequeue = function() {
+
+            return items.shift();
+        };
+
+        this.front = function() {
+
+            return items[0];
+        };
+
+        this.isEmpty = function() {
+
+            return items.length == 0;
+        };
+
+        this.clear = function() {
+
+            items = [];
+        };
+
+        this.size = function() {
+
+            return items.length;
+        };
+
+        this.print = function() {
+
+            console.log(items.toString());
+        };
+    }
+
+    var priorityQueue = new PriorityQueue();
+    priorityQueue.enqueue("John", 2);
+    priorityQueue.enqueue("Jack", 1);
+    priorityQueue.enqueue("Camila", 1);
+    priorityQueue.print();
+
+    //以上为最小优先队列,最大有线队列则相反
+    </script>
+</body>
+
+</html>

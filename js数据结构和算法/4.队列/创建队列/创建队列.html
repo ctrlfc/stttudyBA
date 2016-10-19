@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>创建队列</title>
+</head>
+
+<body>
+    <script>
+    /**
+     * 队列是遵从FIFO(先来先服务)原则的一组[有序的项]
+     * 队列在尾部添加新元素,并从顶部移除元素.新添加的元素排在队列末尾
+     */
+
+    /**
+     * 创建自己的类来表示一个队列
+     */
+    function Queue() {
+        //这里是属性和方法
+    }
+
+    var items = [];
+    /**
+     * enqueue(element(s)):向队列尾部添加一个(或多个)新的项
+     * dequeue():移除队列的第一(即排在队列最前面的)项
+     * front():返回队列中第一个元素--最先被添加,也将是最先被移除的元素.队列不做任何变动(不移除元素,值返回元素信息--与Stack类的peek方法非常类似)
+     * isEmpty():如果队列中不包含任何元素,返回true
+     * size():返回队列包含的元素个数,与数组的lenght类似
+     */
+
+    //被其他函数调用
+    //新项只能添加队列末尾(类似push)
+    this.enqueue = function(element) {
+        items.push(element);
+    };
+
+    //移除项(类似shift:从0位删除)
+    this.dequeue = function() {
+        return items.shift();
+    };
+
+    //好想知道最前面的项(=_=)
+    this.front = function() {
+        return items[0];
+    };
+
+    //判断是否是空
+    this.isEmpty = function() {
+        return items.length === 0;
+    }
+
+    //size方法
+    this.size = function() {
+        return items.length;
+    };
+
+    //print方法
+    this.print = function() {
+        console.log(items.toString());
+    };
+    </script>
+</body>
+
+</html>

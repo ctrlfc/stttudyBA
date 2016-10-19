@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>真值和假值</title>
+</head>
+
+<body>
+    <script>
+    /**
+     * -在js中,像"Packt"这样的字符串值,也可以看作true
+     * undefined : false
+     * null : false
+     * 布尔值 : true是true,false是false
+     * 数字 : +0,-0和NaN都是false,其他都是true
+     * 字符串 : 如果字符串是空的(长度是0)就是false,其他都是true
+     * 对象 : true
+     */
+
+    function testTruthy(val) {
+    	return val ? console.log('truthy') : console.log('falsy');
+    }
+
+    testTruthy(true); //truthy
+    testTruthy(false); // falsy
+    testTruthy(new Boolean(false)); //truthy 对象永远是true
+
+    testTruthy(''); //falsy
+    testTruthy('Packt') //truthy
+    testTruthy(new String('')); //truthy
+
+    testTruthy(1); //truthy
+    testTruthy(-1); //truthy
+    testTruthy(NaN); //falsy
+    testTruthy(new Number(NaN)); //truthy
+
+    testTruthy({}); //truthy
+
+    var obj = {name:'John'}; //truthy
+    testTruthy(obj); //truthy
+    testTruthy(obj.name); //truthy
+    testTruthy(obj.age); //falsy 没有age
+
+    </script>
+</body>
+
+</html>

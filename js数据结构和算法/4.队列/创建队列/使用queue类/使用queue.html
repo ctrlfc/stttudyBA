@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>使用queue</title>
+    <script src="../完整queue类/queue.js"></script>
+</head>
+
+<body>
+    <script>
+    //实例化
+    var queue = new Queue();
+    console.log(queue.isEmpty()); //true
+
+    //添加数据
+    queue.enqueue('John');
+    queue.enqueue('Jack');
+
+    queue.enqueue('Camila');
+
+    queue.print();
+    console.log(queue.size()); //输出3
+    console.log(queue.isEmpty()); //输出false
+    queue.dequeue();
+    queue.dequeue();
+    queue.print();
+
+    </script>
+</body>
+
+</html>

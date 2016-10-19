@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>this</title>
+</head>
+
+<body>
+<script>
+    /**
+     * 在闭包中使用 this 对象也可能会导致一些问题。我们知道，this 对象是在运行时基于函数的执 行环境绑定的：在全局函数中，this 等于 window，而当函数被作为某个对象的方法调用时，this 等 ① 于那个对象。不过，匿名函数的执行环境具有全局性，因此其 this 对象通常指向 window 。但有时候 由于编写闭包的方式不同，这一点可能不会那么明显。
+     */
+
+    /**
+     * this指向引用它的那个人,不过在匿名函数(全局性)中指向window,闭包则又有些不一样
+     */
+    var name = "The Window";
+
+    var object = {
+        name: "My Object",
+
+        getNameFunc: function () {
+            return function () {
+                return this.name;
+            };
+        }
+    };
+
+    console.log(object.getNameFunc()()); //会立即调用它返回的函数,但是返回的是"the window"
+
+    /**
+     * 以上代码先创建了一个全局变量 name，又创建了一个包含 name 属性的对象。这个对象还包含一 个方法——getNameFunc()，它返回一个匿名函数，而匿名函数又返回 this.name。由于 getNameFunc() 返回一个函数，因此调用 object.getNameFunc()()就会立即调用它返回的函数，结果就是返回一个 字符串。然而，这个例子返回的字符串是"The Window"，即全局 name 变量的值。为什么匿名函数没 有取得其包含作用域（或外部作用域）的 this 对象呢？
+     */
+    /**
+     * 前面曾经提到过，每个函数在被调用时都会自动取得两个特殊变量：this 和 arguments。内部函 数在搜索这两个变量时，只会搜索到其活动对象为止，因此永远不可能直接访问外部函数中的这两个变 量。不过，把外部作用域中的 this 对象保存在一个闭包能够访问 到的变量里，就可以让闭包访问该对象了，如下所示。
+     */
+
+    /**
+     * 搜索this和arguments的时候只会搜索到活动对像,即函数执行时的对象
+     * 如果要访问外部name,则要把外部作用域中的(object)this放到能访问的地方
+     * @type {string}
+     */
+    var name = "the window";
+
+    var object = {
+        name: "my object",
+
+        getfunction: function () {
+            var that = this; //把外部作用域的this保存到一个闭包能访问的变量里
+            return function () {
+                return that.name;
+            };
+        }
+
+    };
+    console.log(object.getfunction()());
+
+    /**
+     * 代码中突出的行展示了这个例子与前一个例子之间的不同之处。在定义匿名函数之前，我们把 this 对象赋值给了一个名叫 that 的变量。而在定义了闭包之后，闭包也可以访问这个变量，因为它是我们 在包含函数中特意声名的一个变量。 即使在函数返回之后，that 也仍然引用着 object，所以调用 object.getNameFunc()()就返回了"My Object"
+     */
+
+    /**
+     * 不过仍然会发生变化
+     */
+
+    var name = "The Window";
+
+    var object = {
+        name: "My Object",
+
+        getName: function () {
+            return this.name;
+        }
+    };
+    console.log(object.getName()); //"My Object"
+    console.log((object.getName)()); //"My Object"
+    console.log((object.getName = object.getName)()); //"The Window"，在非严格模式下
+
+    /**
+     * 第一行代码跟平常一样调用了 object.getName()，返回的是"My Object"，因为 this.name 就是 object.name。第二行代码在调用这个方法前先给它加上了括号。虽然加上括号之后，就好像只 是在引用一个函数，但 this 的值得到了维持，因为 object.getName 和(object.getName)的定义 是相同的。第三行代码先执行了一条赋值语句，然后再调用赋值后的结果。因为这个赋值表达式的值是 函数本身，所以 this 的值不能得到维持，结果就返回了"The Window"。
+
+     当然，你不大可能会像第二行和第三行代码一样调用这个方法。不过，这个例子有助于说明即使是 语法的细微变化，都有可能意外改变 this 的值。
+     */
+</script>
+</body>
+
+</html>

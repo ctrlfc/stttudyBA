@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>二维和多维数组</title>
+</head>
+
+<body>
+    <script>
+    //虽然可以这样保存每小时天气数据
+    var atd1 = [72, 75, 79, 79, 81, 81];
+    var atd2 = [81, 79, 75, 75, 73, 72];
+
+    //但可以更好,那就是用矩阵(二维数组)
+    var at = [];
+    atd[0] = [72, 75, 79, 79, 81, 81];
+    atd[1] = [81, 79, 75, 75, 73, 72];
+
+    //但是js不支持二维数组,但是可以用数组套数组
+    //day1
+    atd[0] = [];
+    atd[0][0] = 72;
+    atd[0][1] = 75;
+    atd[0][2] = 79;
+    atd[0][3] = 79;
+    atd[0][4] = 81;
+    atd[0][5] = 81;
+
+    //day2
+    atd[1] = [];
+    atd[1][0] = [81];
+    atd[1][1] = [79];
+    atd[1][2] = [75];
+    atd[1][3] = [75];
+    atd[1][4] = [73];
+    atd[1][5] = [72];
+
+    function printMatrix(myMatrix) {
+        for (var i = 0; i < myMatrix.length; i++) {
+            for (var i = 0; i < myMatrix[i].length; i++) {
+                console.log(myMatrix[i][i]);
+            }
+        }
+        printMatrix(atd);
+        //这样就遍历了数组
+
+        /**
+         * 如果要建立一个3v3x3的矩阵
+         */
+
+        var m3x3x3 = [];
+        for (var i = 0; i < 3; i++) {
+            m3x3x3[i] = [];
+            for (var j = 0; j < 3; j++) {
+                m3x3x3[i][j] = [];
+                for (var z = 0; z < 3; z++) {
+                    m3x3x3[i][j][z] = i + j + z;
+                }
+            }
+        }
+    }
+    for (var i = 0; i < mx3x3x3.length; i++) {
+        for (var j = 0; j < mx3x3x3[i].length; j++) {
+            for (var z = 0; z < mx3x3x3[i][j].length; z++) {
+
+                console.log(mx3x3x3[i][j][z]);
+            }
+        }
+    }
+    </script>
+</body>
+
+</html>

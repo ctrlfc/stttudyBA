@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>函数</title>
+</head>
+
+<body>
+    <script>
+    /**
+     * 基本函数,但没有return和参数
+     */
+
+    function sayHello() {
+        console.log('Hello!');
+    }
+
+    sayHello();
+
+    /**
+     * 可以传参,就是函数变量
+     */
+
+    function output(text){
+    	console.log(text);
+    }
+
+    output('Hello!');
+
+    /**
+     * 传一个参数,第二个被忽略,也可以返回一个值
+     */
+
+    function sum(num1,num2){
+    	return num1 + num2;
+    }
+
+    /**
+     * [result description] 这个函数给定2个数之和,返回结果
+     * @type {[type]}
+     */
+    var result = sum(1,2);
+    output(result);
+    </script>
+</body>
+
+</html>

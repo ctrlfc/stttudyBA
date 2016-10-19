@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>属性类型</title>
+</head>
+<body>
+<script>
+    /**
+     * 属性类型
+     *      1.只有内部才用的特性（attribute）时，描述了属性（property）各种特征
+     *      2.数据属性和访问器属性
+     */
+    var person = {
+        name: "Nicholas"
+    };
+    /**
+     *1. 数据属性
+     *[[configurable]]: 能否通过 delete 删除属性从而重新定义属性 (true)
+     *[[enumerable]]: 能否通过 for-in 循环返回属性 (true)
+     *[[writable]]: 能否修改属性的值 (true)
+     *[[value]]: 包含这个属性的数据值
+     * 修改默认属性Object.defineProperty 方法
+     *      接受[三个]参数:[属性所在的对象、属性的名字和一个描述符对象]
+     *           描述符（descriptor）对象的属性必须是：configurable、enumerable、writable 和 value
+     */
+
+    /**
+     *  修改是否改写属性的默认值
+     */
+    var person = {};
+    Object.defineProperty(person, "name", {
+        writable: false,
+        value: "Nicholas",
+    });
+    //    alert(person.name);
+    console.log(person.name); //Nicholas
+    person.name = "Greg";
+    //    alert(person.name);
+    console.log(person.name); //Nicholas
+
+    /**
+     *  修改是否删除属性从而重新定义属性
+     */
+    var person1 = {};
+    Object.defineProperty(person1, "name", {
+        configurable: false,
+        value: "Nicholas",
+    });
+    console.log(person1.name); //Nicholas
+    delete person.name;
+    console.log(person1.name); //Nicholas
+
+    /**
+     * 再次调用defineProperty方法 会出错 因为这是不可逆的
+     */
+    Object.defineProperty(person1, "name", {
+        configurable: true,
+        value: "Nicholas",
+    });
+    /**
+     * 2. 访问器属性
+     *      不能直接调用 需用object.defineProperty()
+     *      不包含数据值
+     *      包含一对不是必须的getter和setter函数
+     *      读取的时候会调用getter函数 返回有效值
+     *      写入的时候会调用setter函数 如何处理数据
+     * [[Configurable]]: 能否通过delete删除属性从而重新定义属性
+     * [[Enumerable]]: 能否通过for in循环返回属性
+     * [[Get]]:在读取属性时候调用
+     * [[Set]]:在写入属性时调用
+     */
+    var book = {
+        _year: 2004,
+        edition: 1
+    };
+    Object.defineProperty(book, "year", {
+        /**
+         * 读取时
+         * @returns {number|*}
+         */
+        get: function () {
+            /**
+             * _ 表示只能通过对象方法访问的属性
+             */
+            return this._year;
+        },
+        /**
+         * 写入时
+         * @param newValue
+         */
+        set: function (newValue) {
+            if (newValue > 2004) {
+                this._year = newValue;
+                this.edition += newValue - 2004;
+            }
+        }
+    });
+    book.year = 2005;
+    console.log(book.edition);
+</script>
+</body>
+</html>

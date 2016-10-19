@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>函数表达式</title>
+</head>
+
+<body>
+    <script>
+    /**
+     * 定义函数有两种方式:1.函数声明 2.函数表达式
+     */
+    //(只在非IE有效,可以访问函数名)
+    alert(functionName.name); //"functionName"
+
+    //--------------------------------------------------------------
+
+    /**
+     * 函数声明的语法
+     */
+
+    function functionName(arg0, arg1, arg2) {
+        //函数体
+    }
+    //首先是 function 关键字，然后是函数的名字，这就是指定函数名的方式。
+
+    /**
+     * 函数声明最重要的特征就是[函数声明提升]
+     */
+
+    //意思是执行前会先读取函数声明.这就意味着可以把函数声明放在调用它的语句后面
+    sayHi();
+
+    function sayHi() {
+        alert('Hi');
+    }
+
+    //---------------------------------------------------------------------------
+
+    /**
+     * 函数表达式语法
+     */
+
+    var functionName = function(arg0, arg1, arg2) {
+        //函数体
+    };
+    //匿名函数(name是空字符串)
+    //必须先赋值,才能调用
+
+    var sayHi;
+    if (condition) {
+        sayHi = function() {
+            alert('Hi!');
+        };
+    } else {
+        sayHi = function() {
+            alert('Yo!');
+        };
+    }
+    //先声明再赋值,所以以上才对(声明赋值调用)
+    //能够创建函数再赋值给变量,也就能够把函数作为其他函数的值返回
+    </script>
+</body>
+
+</html>
