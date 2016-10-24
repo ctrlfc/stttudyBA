@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>boxshadow</title>
+    <style>
+        .boxshadow-outset{
+            width:100px;
+            height:100px;
+            box-shadow:
+            4px 4px 6px #666,/*外阴影右下角*/
+            -4px 4px 6px #aac,/*外阴影左下角*/
+            4px -4px 6px #ddd, /*外阴影右上角*/
+            -4px -4px 6px green, /*外阴影左上角*/
+            4px 4px 6px blue inset, /*内阴影左上角*/
+            -4px -4px 6px red inset, /*内阴影右下角*/
+            -4px 10px 4px #4c221b inset, /*内阴影右上角*/
+            -4px -4px 4px #ff7500 inset; /*内阴影左下角*/
+        }
+        .boxshadow-inset{
+            width:100px;
+            height:100px;
+            box-shadow:4px 4px 6px #666 inset;
+        }
+        .boxshadow-multi{
+            width:100px;
+            height:100px;
+            box-shadow:4px 2px 6px #f00, -4px -2px 6px #000, 0px 0px 12px 5px #33CC00 inset;
+        }
+
+    </style>
+</head>
+
+<body>
+<h2>外阴影</h2>
+<div class="boxshadow-outset">
+</div>
+<br />
+<h2>内阴影</h2>
+<div class="boxshadow-inset">
+</div>
+<br />
+<h2>多阴影</h2>
+<div class="boxshadow-multi">
+</div>
+</body>CSS3边框
+</html>
